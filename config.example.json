@@ -1,0 +1,32 @@
+{
+    "input-separator": ";",
+    "output-separator": ";",
+    "split-separator": "||",
+    "columns":   [
+        { "from": 0, "title": "uef.solecris.id"},
+        { "from": 1, "title": "dc.title"},
+        { "from": 2, "title": "dc.contributor.author", "split-by": ";"},
+        { "from": 3, "title": "dc.date.issued"},
+        { "from": 4, "title": "dc.language.iso"},
+        { "from": 5, "discard": true, "title": "dc.identifier.volume"},
+        { "from": 6, "title": "dc.publisher"},
+        { "from": 7, "discard": true, "title": "DB" },
+        { "from": 8, "discard": true, "title": "DB"},
+        { "from": 9, "title": "dc.identifier.isbn"},
+	{ "from": 10, "title": "dc.identifier.issn"},
+	{ "from": 11, "title": "dc.identifier.issn"},
+	{ "from": 12, "discard": true, "title": "dc.identifier.issue"},
+	{ "from": 13, "discard": true, "title": "dc.identifier.issue"},
+	{ "from": 14, "discard": true, "title": "dc.identifier.issue"},
+	{ "from": 15, "discard": true, "title": "dc.identifier.issue"},
+	{ "from": 16, "title": "dc.relation.ispartof"},
+	{ "from": 17, "discard": true, "title": "DB"},
+	{ "from": 18, "discard": true, "title": "DB"},
+	{ "from": 19, "title": "dc.identifier"},
+	{ "from": 20, "discard": true, "title": "DB"},
+	{ "from": 21, "discard": true, "title": "DB"},
+	{ "from": 22, "title": "dc.publisher"},
+	{ "from": 23, "discard": true, "title": "DB"}
+    ]
+}
+

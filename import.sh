@@ -132,7 +132,7 @@ saf-archiver $TMP3 $ARCHIVEDIR
 
 if [ "x$DS_LICENSE" != "x" ];
 then
-	echo "TODO: add licence file"
+	add-file -m "bundle:LICENSE" $DS_LICENSE $ARCHIVEDIR
 fi
 
 #

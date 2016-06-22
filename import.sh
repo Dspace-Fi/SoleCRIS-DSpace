@@ -81,7 +81,7 @@ ARCHIVEDIR=$WORKDIR/archive
 # Check if binaries are in path
 #
 command -v prepare-csv >/dev/null 2>&1 || { echo "prepare-csv command is not installed. Aborting." >&2; exit 1; }
-command -v saf-archive >/dev/null 2>&1 || { echo "saf-archive command is not installed. Aborting." >&2; exit 1; }
+command -v saf-archiver >/dev/null 2>&1 || { echo "saf-archiver command is not installed. Aborting." >&2; exit 1; }
 command -v add-file >/dev/null 2>&1 || { echo "add-file command is not installed. Aborting." >&2; exit 1; }
 command -v solecris_records_in_dspace.sh >/dev/null 2>&1 || { echo "solecris_records_in_dspace.sh command is not installed. Aborting." >&2; exit 1; }
 
@@ -124,7 +124,7 @@ then
     rm -rf "$ARCHIVEDIR"
 fi
 
-saf-archive $TMP3 $ARCHIVEDIR
+saf-archiver $TMP3 $ARCHIVEDIR
 
 #
 # Add LICENSE files to archive

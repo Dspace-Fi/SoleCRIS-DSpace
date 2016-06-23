@@ -121,21 +121,19 @@ cp $TMP1 $TMP2
 
 for ID in $IDS
 do
-	cat $TMP2 | awk -F";" '$1 != $ID' > $TMP3
+	cat $TMP2 | awk -v soleid="$ID" -F";" '$1 != soleid' > $TMP3
 	cp $TMP3 $TMP2
 	
 done
 
 # Check if there is still content
-LINES=`wc -l $TMP3 | sed 's/^\([0-9]*\).*$/\1/'`
+LINES=`wc -l $TMP2 | sed 's/^\([0-9]*\).*$/\1/'`
 
-if [ $LINES -lt 1 ]
+if [ $LINES -lt 2 ]
 then
         echo "No new records to be processed."
         exit 0
 fi
-
-
 
 #
 # Create SAF Archive
@@ -145,7 +143,7 @@ then
     rm -rf "$ARCHIVEDIR"
 fi
 
-saf-archiver $TMP3 $ARCHIVEDIR
+saf-archiver $TMP2 $ARCHIVEDIR
 
 #
 # Add LICENSE files to archive
@@ -159,6 +157,15 @@ fi
 #
 # Import to DSpace
 #
+
+# Check for MAP-directory
+if [[ ! -d "$DS_MAPDIR" ]];
+then
+	echo "Creating MAP-directory $DS_MAPDIR..."
+	mkdir -p $DS_MAPDIR
+fi
+
+
 MAPFILE=$DS_MAPDIR/map-$(date +"%Y-%m-%d")
 
 $DS_DIR/bin/dspace import --test --add --collection $DS_COLLECTION --source $ARCHIVEDIR --eperson $DS_EPERSON \

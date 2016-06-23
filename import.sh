@@ -96,7 +96,17 @@ mkdir "$WORKDIR"
 #
 # Prepare CSV-file for SAF Archiver
 #
+
+# Remove header and check if there is content
 tail -n +2 $SOLE_CSV_FILE > $TMP0
+
+LINES=`wc -l $TMP0 | sed 's/^\([0-9]*\).*$/\1/'`
+
+if [ $LINES -lt 1 ]
+then
+	echo "No records to be processed."
+	exit 0
+fi
 
 prepare-csv $SOLE_CSV_CONF $TMP0 > $TMP1
 
@@ -115,6 +125,17 @@ do
 	cp $TMP3 $TMP2
 	
 done
+
+# Check if there is still content
+LINES=`wc -l $TMP3 | sed 's/^\([0-9]*\).*$/\1/'`
+
+if [ $LINES -lt 1 ]
+then
+        echo "No new records to be processed."
+        exit 0
+fi
+
+
 
 #
 # Create SAF Archive

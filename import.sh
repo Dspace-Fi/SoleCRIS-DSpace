@@ -35,7 +35,7 @@ fi
 
 if [ "x$SOLE_CSV_FILE" == "x" ];
 then
-	echo "Setting SOLE_CSV_FILE (CSV input from SoleCRIS) to /opt/solecris/solecris_dspace.csv";
+	echo "Setting SOLE_CSV_FILE (CSV input from SoleCRIS) to /opt/solecris-dspace/solecris_dspace.csv";
 	SOLE_CSV_FILE=/opt/solecris-dspace/solecris_dspace.csv
 fi
 

@@ -168,5 +168,5 @@ fi
 
 MAPFILE=$DS_MAPDIR/map-$(date +"%Y-%m-%d")
 
-$DS_DIR/bin/dspace import --test --add --collection $DS_COLLECTION --source $ARCHIVEDIR --eperson $DS_EPERSON \
+$DS_DIR/bin/dspace import $DS_FLAGS --add --collection $DS_COLLECTION --source $ARCHIVEDIR --eperson $DS_EPERSON \
     --mapfile $MAPFILE --workflow

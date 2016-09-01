@@ -5,7 +5,7 @@
     "columns":   [
         { "from": 0, "title": "uef.solecris.id"},
         { "from": 1, "title": "dc.title"},
-        { "from": 2, "title": "dc.contributor.author", "split-by": ";"},
+        { "from": 2, "title": "dc.contributor.author", "split-by": ","},
         { "from": 3, "title": "dc.date.issued"},
         { "from": 4, "title": "dc.language.iso"},
         { "from": 5, "discard": true, "title": "dc.identifier.volume"},

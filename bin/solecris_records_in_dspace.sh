@@ -27,9 +27,9 @@ if [ -z "$PGPASSWORD" ] ; then
 fi
 
 psql $dbname -U $dbuser -h 127.0.0.1 << EOF
-select a.text_value "uef.solecris.id", b.text_value "dc.title" 
+select distinct a.text_value "uef.solecris.id", b.text_value "dc.title" 
 from ( 
-     select resource_id, text_value 
+     select dspace_object_id, text_value 
      from metadatavalue 
      where metadata_field_id = (
 
@@ -40,7 +40,7 @@ from (
 
 	 join (
 
-	 select resource_id, text_value 
+	 select dspace_object_id, text_value 
 	 from metadatavalue 
 	 where metadata_field_id = (
 
@@ -49,7 +49,7 @@ from (
 		 where s.short_id = 'dc' and r.element = 'title' 
 		 and r.qualifier is null and r.metadata_schema_id = s.metadata_schema_id)) b 
 
-	 on a.resource_id = b.resource_id;
+	 on a.dspace_object_id = b.dspace_object_id;
 EOF
 
 

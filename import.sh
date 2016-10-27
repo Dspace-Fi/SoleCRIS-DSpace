@@ -71,11 +71,22 @@ fi
 # Internal variables, these shouldn't normally need changing
 #
 WORKDIR=/tmp/solecris-dspace
+SOLEFILE=/tmp/solecris_dspace.csv
 TMP0=$WORKDIR/header_dropped.csv
 TMP1=$WORKDIR/prepared_solecris.csv
 TMP2=$WORKDIR/tmp.csv
 TMP3=$WORKDIR/pruned_solecris.csv
 ARCHIVEDIR=$WORKDIR/archive
+
+#
+# Copy input file, abort if it is missing
+#
+if [ -f "$SOLE_CSV_FILE" ]; then
+	cp $SOLE_CSV_FILE $SOLEFILE
+else
+	echo "Missing SoleCRIS -> DSpace datafile '$SOLE_CSV_FILE'. Check if there are problems with automated transfer!"
+	exit 1;
+fi
 
 #
 # Check if binaries are in path
@@ -98,7 +109,7 @@ mkdir "$WORKDIR"
 #
 
 # Remove header and check if there is content
-tail -n +2 $SOLE_CSV_FILE > $TMP0
+tail -n +2 $SOLEFILE > $TMP0
 
 LINES=`wc -l $TMP0 | sed 's/^\([0-9]*\).*$/\1/'`
 
@@ -170,3 +181,9 @@ MAPFILE=$DS_MAPDIR/map-$(date +"%Y-%m-%d")
 
 $DS_DIR/bin/dspace import $DS_FLAGS --add --collection $DS_COLLECTION --source $ARCHIVEDIR --eperson $DS_EPERSON \
     --mapfile $MAPFILE --workflow
+
+#
+# If everything went ok, archive the original SoleCRIS transfer file
+#
+mv $SOLE_CSV_FILE $SOLE_CSV_FILE-$(date +"%Y-%m-%d")
+

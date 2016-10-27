@@ -2,6 +2,8 @@
 
 This repository contains import-scripts for SoleCRIS -> DSpace import. The scripts use programs in SAF-Archiver [1] repository. You can use provided `install.sh`-script to copy all the necessary files to somewhere (/opt/solecris-dspace directory is assumed):
 
+**Note:** The database import script assumes DSpace version 5.x. and does not work for version 6.
+
 ```
 $ sudo ./install.sh /opt/solecris-dspace
 ```
